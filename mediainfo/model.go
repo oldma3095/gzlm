@@ -17,7 +17,7 @@ type MediaInfo struct {
 	TotalReaderCount int         `json:"totalReaderCount"` // 观看总人数，包括hls/rtsp/rtmp/http-flv/ws-flv
 	Tracks           []Track     `json:"tracks"`           // 音视频轨道
 	Vhost            string      `json:"vhost"`            // 虚拟主机名
-	Transcodes       []Transcode `json:"transcode"`        // 转码相关
+	Transcodes       []Transcode `json:"transcode"`        // pro版本，转码相关
 }
 
 type OriginSock struct {
