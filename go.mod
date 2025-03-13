@@ -1,4 +1,4 @@
-module gzlm
+module github.com/oldma3095/gzlm
 
 go 1.24
 
