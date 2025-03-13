@@ -1,4 +1,4 @@
-package mediakit
+package gzlm
 
 import (
 	"crypto/tls"

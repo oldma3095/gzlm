@@ -1,4 +1,4 @@
-package mediainfo
+package gzlm
 
 type MediaInfo struct {
 	AliveSecond      int         `json:"aliveSecond"`      // 存活时间，单位秒

@@ -1,9 +1,7 @@
-package mediakit
+package gzlm
 
 import (
 	"fmt"
-	"gzlm/request"
-	"gzlm/response"
 	"net/url"
 )
 
@@ -32,7 +30,7 @@ func (m *MediaKit) checkInit() (err error) {
 	return
 }
 
-func (m *MediaKit) AddFFMpegSource(info request.AddFFMpegSource) (res response.AddFFMpegSource, err error) {
+func (m *MediaKit) AddFFMpegSource(info AddFFMpegSourceReq) (res AddFFMpegSourceRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -68,14 +66,14 @@ func (m *MediaKit) AddFFMpegSource(info request.AddFFMpegSource) (res response.A
 	return
 }
 
-func (m *MediaKit) AddStreamProxy(info request.AddStreamProxy) (res response.AddStreamProxy, err error) {
+func (m *MediaKit) AddStreamProxy(info AddStreamProxyReq) (res AddStreamProxyRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
 	}
 
-	if info.APP == "" || info.Stream == "" || info.URL == "" {
-		err = fmt.Errorf("参数错误, app:%s, stream:%s, url:%s", info.APP, info.Stream, info.URL)
+	if info.App == "" || info.Stream == "" || info.Url == "" {
+		err = fmt.Errorf("参数错误, app:%s, stream:%s, url:%s", info.App, info.Stream, info.Url)
 		return
 	}
 
@@ -131,14 +129,14 @@ func (m *MediaKit) AddStreamProxy(info request.AddStreamProxy) (res response.Add
 	return
 }
 
-func (m *MediaKit) AddStreamPusherProxy(info request.AddStreamPusherProxy) (res response.AddStreamPusherProxy, err error) {
+func (m *MediaKit) AddStreamPusherProxy(info AddStreamPusherProxyReq) (res AddStreamPusherProxyRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
 	}
 
-	if info.Schema == "" || info.APP == "" || info.Stream == "" || info.DstUrl == "" {
-		err = fmt.Errorf("参数错误, schema:%s, app:%s, stream:%s, url:%s", info.Schema, info.APP, info.Stream, info.DstUrl)
+	if info.Schema == "" || info.App == "" || info.Stream == "" || info.DstUrl == "" {
+		err = fmt.Errorf("参数错误, schema:%s, app:%s, stream:%s, url:%s", info.Schema, info.App, info.Stream, info.DstUrl)
 		return
 	}
 
@@ -167,7 +165,7 @@ func (m *MediaKit) AddStreamPusherProxy(info request.AddStreamPusherProxy) (res 
 	return
 }
 
-func (m *MediaKit) CloseRtpServer(info request.CloseRtpServer) (res response.CloseRtpServer, err error) {
+func (m *MediaKit) CloseRtpServer(info CloseRtpServerReq) (res CloseRtpServerRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -195,7 +193,7 @@ func (m *MediaKit) CloseRtpServer(info request.CloseRtpServer) (res response.Clo
 	return
 }
 
-func (m *MediaKit) CloseStreams(info request.CloseStreams) (res response.CloseStreams, err error) {
+func (m *MediaKit) CloseStreams(info CloseStreamsReq) (res CloseStreamsRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -222,7 +220,7 @@ func (m *MediaKit) CloseStreams(info request.CloseStreams) (res response.CloseSt
 	return
 }
 
-func (m *MediaKit) DelFFMpegSource(info request.DelFFMpegSource) (res response.DelFFMpegSource, err error) {
+func (m *MediaKit) DelFFMpegSource(info DelFFMpegSourceReq) (res DelFFMpegSourceRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -250,7 +248,7 @@ func (m *MediaKit) DelFFMpegSource(info request.DelFFMpegSource) (res response.D
 	return
 }
 
-func (m *MediaKit) DelStreamProxy(info request.DelStreamProxy) (res response.DelStreamProxy, err error) {
+func (m *MediaKit) DelStreamProxy(info DelStreamProxyReq) (res DelStreamProxyRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -278,7 +276,7 @@ func (m *MediaKit) DelStreamProxy(info request.DelStreamProxy) (res response.Del
 	return
 }
 
-func (m *MediaKit) DelStreamPusherProxy(info request.DelStreamPusherProxy) (res response.DelStreamPusherProxy, err error) {
+func (m *MediaKit) DelStreamPusherProxy(info DelStreamPusherProxyReq) (res DelStreamPusherProxyRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -300,7 +298,7 @@ func (m *MediaKit) DelStreamPusherProxy(info request.DelStreamPusherProxy) (res 
 	return
 }
 
-func (m *MediaKit) GetAllSession(info request.GetAllSession) (res response.GetAllSession, err error) {
+func (m *MediaKit) GetAllSession(info GetAllSessionReq) (res GetAllSessionRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -322,7 +320,7 @@ func (m *MediaKit) GetAllSession(info request.GetAllSession) (res response.GetAl
 	return
 }
 
-func (m *MediaKit) GetApiList(info request.GetApiList) (res response.GetApiList, err error) {
+func (m *MediaKit) GetApiList(info GetApiListReq) (res GetApiListRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -344,7 +342,7 @@ func (m *MediaKit) GetApiList(info request.GetApiList) (res response.GetApiList,
 	return
 }
 
-func (m *MediaKit) GetMediaList(info request.GetMediaList) (res response.GetMediaList, err error) {
+func (m *MediaKit) GetMediaList(info GetMediaListReq) (res GetMediaListRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -366,7 +364,7 @@ func (m *MediaKit) GetMediaList(info request.GetMediaList) (res response.GetMedi
 	return
 }
 
-func (m *MediaKit) GetMp4RecordFile(info request.GetMp4RecordFile) (res response.GetMp4RecordFile, err error) {
+func (m *MediaKit) GetMp4RecordFile(info GetMp4RecordFileReq) (res GetMp4RecordFileRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -376,8 +374,8 @@ func (m *MediaKit) GetMp4RecordFile(info request.GetMp4RecordFile) (res response
 		info.Vhost = __DefaultVhost__
 	}
 
-	if info.Vhost == "" || info.APP == "" || info.Stream == "" {
-		err = fmt.Errorf("参数错误, vhost:%s, app:%s, stream:%s", info.Vhost, info.APP, info.Stream)
+	if info.Vhost == "" || info.App == "" || info.Stream == "" {
+		err = fmt.Errorf("参数错误, vhost:%s, app:%s, stream:%s", info.Vhost, info.App, info.Stream)
 		return
 	}
 
@@ -398,7 +396,7 @@ func (m *MediaKit) GetMp4RecordFile(info request.GetMp4RecordFile) (res response
 	return
 }
 
-func (m *MediaKit) GetRtpInfo(info request.GetRtpInfo) (res response.GetRtpInfo, err error) {
+func (m *MediaKit) GetRtpInfo(info GetRtpInfoReq) (res GetRtpInfoRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -426,7 +424,7 @@ func (m *MediaKit) GetRtpInfo(info request.GetRtpInfo) (res response.GetRtpInfo,
 	return
 }
 
-func (m *MediaKit) GetServerConfig(info request.GetServerConfig) (res response.GetServerConfig, err error) {
+func (m *MediaKit) GetServerConfig(info GetServerConfigReq) (res GetServerConfigRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -448,13 +446,13 @@ func (m *MediaKit) GetServerConfig(info request.GetServerConfig) (res response.G
 	return
 }
 
-func (m *MediaKit) GetSnap(info request.GetSnap) (res response.GetSnap, err error) {
+func (m *MediaKit) GetSnap(info GetSnapReq) (res GetSnapRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
 	}
 
-	if info.URL == "" || info.TimeoutSec == 0 || info.ExpireSec == 0 {
+	if info.Url == "" || info.TimeoutSec == 0 || info.ExpireSec == 0 {
 		err = fmt.Errorf("参数不能为空或者0")
 		return
 	}
@@ -476,7 +474,7 @@ func (m *MediaKit) GetSnap(info request.GetSnap) (res response.GetSnap, err erro
 	return
 }
 
-func (m *MediaKit) GetStatistic(info request.GetStatistic) (res response.GetStatistic, err error) {
+func (m *MediaKit) GetStatistic(info GetStatisticReq) (res GetStatisticRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -498,7 +496,7 @@ func (m *MediaKit) GetStatistic(info request.GetStatistic) (res response.GetStat
 	return
 }
 
-func (m *MediaKit) GetThreadsLoad(info request.GetThreadsLoad) (res response.GetThreadsLoad, err error) {
+func (m *MediaKit) GetThreadsLoad(info GetThreadsLoadReq) (res GetThreadsLoadRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -520,7 +518,7 @@ func (m *MediaKit) GetThreadsLoad(info request.GetThreadsLoad) (res response.Get
 	return
 }
 
-func (m *MediaKit) GetWorkThreadsLoad(info request.GetWorkThreadsLoad) (res response.GetWorkThreadsLoad, err error) {
+func (m *MediaKit) GetWorkThreadsLoad(info GetWorkThreadsLoadReq) (res GetWorkThreadsLoadRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -542,7 +540,7 @@ func (m *MediaKit) GetWorkThreadsLoad(info request.GetWorkThreadsLoad) (res resp
 	return
 }
 
-func (m *MediaKit) IsMediaOnline(info request.IsMediaOnline) (res response.IsMediaOnline, err error) {
+func (m *MediaKit) IsMediaOnline(info IsMediaOnlineReq) (res IsMediaOnlineRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -552,8 +550,8 @@ func (m *MediaKit) IsMediaOnline(info request.IsMediaOnline) (res response.IsMed
 		info.Vhost = __DefaultVhost__
 	}
 
-	if info.Schema == "" || info.Vhost == "" || info.APP == "" || info.Stream == "" {
-		err = fmt.Errorf("参数错误, schema:%s, vhost:%s, app:%s, stream:%s", info.Schema, info.Vhost, info.APP, info.Stream)
+	if info.Schema == "" || info.Vhost == "" || info.App == "" || info.Stream == "" {
+		err = fmt.Errorf("参数错误, schema:%s, vhost:%s, app:%s, stream:%s", info.Schema, info.Vhost, info.App, info.Stream)
 		return
 	}
 
@@ -574,7 +572,7 @@ func (m *MediaKit) IsMediaOnline(info request.IsMediaOnline) (res response.IsMed
 	return
 }
 
-func (m *MediaKit) KickSessions(info request.KickSessions) (res response.KickSessions, err error) {
+func (m *MediaKit) KickSessions(info KickSessionsReq) (res KickSessionsRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -596,7 +594,7 @@ func (m *MediaKit) KickSessions(info request.KickSessions) (res response.KickSes
 	return
 }
 
-func (m *MediaKit) ListRtpServer(info request.ListRtpServer) (res response.ListRtpServer, err error) {
+func (m *MediaKit) ListRtpServer(info ListRtpServerReq) (res ListRtpServerRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -618,7 +616,7 @@ func (m *MediaKit) ListRtpServer(info request.ListRtpServer) (res response.ListR
 	return
 }
 
-func (m *MediaKit) OpenRtpServer(info request.OpenRtpServer) (res response.OpenRtpServer, err error) {
+func (m *MediaKit) OpenRtpServer(info OpenRtpServerReq) (res OpenRtpServerRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -659,7 +657,7 @@ func (m *MediaKit) OpenRtpServer(info request.OpenRtpServer) (res response.OpenR
 	return
 }
 
-func (m *MediaKit) RestartServer(info request.RestartServer) (res response.RestartServer, err error) {
+func (m *MediaKit) RestartServer(info RestartServerReq) (res RestartServerRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -681,7 +679,7 @@ func (m *MediaKit) RestartServer(info request.RestartServer) (res response.Resta
 	return
 }
 
-func (m *MediaKit) SetServerConfig(info map[string]string) (res response.SetServerConfig, err error) {
+func (m *MediaKit) SetServerConfig(info map[string]string) (res SetServerConfigRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -708,7 +706,7 @@ func (m *MediaKit) SetServerConfig(info map[string]string) (res response.SetServ
 	return
 }
 
-func (m *MediaKit) StartRecord(info request.StartRecord) (res response.StartRecord, err error) {
+func (m *MediaKit) StartRecord(info StartRecordReq) (res StartRecordRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -718,8 +716,8 @@ func (m *MediaKit) StartRecord(info request.StartRecord) (res response.StartReco
 		info.Vhost = __DefaultVhost__
 	}
 
-	if info.Vhost == "" || info.APP == "" || info.Stream == "" {
-		err = fmt.Errorf("参数错误, vhost:%s, app:%s, stream:%s", info.Vhost, info.APP, info.Stream)
+	if info.Vhost == "" || info.App == "" || info.Stream == "" {
+		err = fmt.Errorf("参数错误, vhost:%s, app:%s, stream:%s", info.Vhost, info.App, info.Stream)
 		return
 	}
 
@@ -744,7 +742,7 @@ func (m *MediaKit) StartRecord(info request.StartRecord) (res response.StartReco
 	return
 }
 
-func (m *MediaKit) StartSendRtp(info request.StartSendRtp) (res response.StartSendRtp, err error) {
+func (m *MediaKit) StartSendRtp(info StartSendRtpReq) (res StartSendRtpRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -754,11 +752,11 @@ func (m *MediaKit) StartSendRtp(info request.StartSendRtp) (res response.StartSe
 		info.Vhost = __DefaultVhost__
 	}
 
-	if info.Vhost == "" || info.APP == "" || info.Stream == "" || info.SSRC == 0 || info.DstUrl == "" ||
+	if info.Vhost == "" || info.App == "" || info.Stream == "" || info.Ssrc == 0 || info.DstUrl == "" ||
 		info.DstPort == 0 || info.DstPort > 65535 {
 		err = fmt.Errorf(
 			"参数错误, vhost:%s, app:%s, stream:%s, ssrc:%d, dst_url:%s, dst_port:%d, src_port:%d",
-			info.Vhost, info.APP, info.Stream, info.SSRC, info.DstUrl, info.DstPort, info.DstPort)
+			info.Vhost, info.App, info.Stream, info.Ssrc, info.DstUrl, info.DstPort, info.DstPort)
 		return
 	}
 	if info.SrcPort > 65535 {
@@ -799,7 +797,7 @@ func (m *MediaKit) StartSendRtp(info request.StartSendRtp) (res response.StartSe
 	return
 }
 
-func (m *MediaKit) StopRecord(info request.StopRecord) (res response.StopRecord, err error) {
+func (m *MediaKit) StopRecord(info StopRecordReq) (res StopRecordRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -809,8 +807,8 @@ func (m *MediaKit) StopRecord(info request.StopRecord) (res response.StopRecord,
 		info.Vhost = __DefaultVhost__
 	}
 
-	if info.Vhost == "" || info.APP == "" || info.Stream == "" {
-		err = fmt.Errorf("参数错误, vhost:%s, app:%s, stream:%s", info.Vhost, info.APP, info.Stream)
+	if info.Vhost == "" || info.App == "" || info.Stream == "" {
+		err = fmt.Errorf("参数错误, vhost:%s, app:%s, stream:%s", info.Vhost, info.App, info.Stream)
 		return
 	}
 	if info.Type > 1 {
@@ -834,7 +832,7 @@ func (m *MediaKit) StopRecord(info request.StopRecord) (res response.StopRecord,
 	return
 }
 
-func (m *MediaKit) StopSendRtp(info request.StopSendRtp) (res response.StopSendRtp, err error) {
+func (m *MediaKit) StopSendRtp(info StopSendRtpReq) (res StopSendRtpRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -844,8 +842,8 @@ func (m *MediaKit) StopSendRtp(info request.StopSendRtp) (res response.StopSendR
 		info.Vhost = __DefaultVhost__
 	}
 
-	if info.Vhost == "" || info.APP == "" || info.Stream == "" {
-		err = fmt.Errorf("参数错误, vhost:%s, app:%s, stream:%s", info.Vhost, info.APP, info.Stream)
+	if info.Vhost == "" || info.App == "" || info.Stream == "" {
+		err = fmt.Errorf("参数错误, vhost:%s, app:%s, stream:%s", info.Vhost, info.App, info.Stream)
 		return
 	}
 
@@ -866,7 +864,7 @@ func (m *MediaKit) StopSendRtp(info request.StopSendRtp) (res response.StopSendR
 	return
 }
 
-func (m *MediaKit) GetProxyInfo(info request.GetProxyInfo) (res response.GetProxyInfo, err error) {
+func (m *MediaKit) GetProxyInfo(info GetProxyInfoReq) (res GetProxyInfoRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -894,7 +892,7 @@ func (m *MediaKit) GetProxyInfo(info request.GetProxyInfo) (res response.GetProx
 	return
 }
 
-func (m *MediaKit) GetProxyPusherInfo(info request.GetProxyPusherInfo) (res response.GetProxyPusherInfo, err error) {
+func (m *MediaKit) GetProxyPusherInfo(info GetProxyPusherInfoReq) (res GetProxyPusherInfoRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -922,7 +920,7 @@ func (m *MediaKit) GetProxyPusherInfo(info request.GetProxyPusherInfo) (res resp
 	return
 }
 
-func (m *MediaKit) SetupTranscode(info request.SetupTranscode) (res response.SetupTranscode, err error) {
+func (m *MediaKit) SetupTranscode(info SetupTranscodeReq) (res SetupTranscodeRes, err error) {
 	err = m.checkInit()
 	if err != nil {
 		return
@@ -932,14 +930,14 @@ func (m *MediaKit) SetupTranscode(info request.SetupTranscode) (res response.Set
 		info.Vhost = __DefaultVhost__
 	}
 
-	if info.Vhost == "" || info.APP == "" || info.Stream == "" || info.Name == "" {
-		err = fmt.Errorf("参数错误, vhost:%s, app:%s, stream:%s, name:%s", info.Vhost, info.APP, info.Stream, info.Name)
+	if info.Vhost == "" || info.App == "" || info.Stream == "" || info.Name == "" {
+		err = fmt.Errorf("参数错误, vhost:%s, app:%s, stream:%s, name:%s", info.Vhost, info.App, info.Stream, info.Name)
 		return
 	}
 	postData := make(map[string]interface{})
 	postData["secret"] = info.Secret
 	postData["vhost"] = info.Vhost
-	postData["app"] = info.APP
+	postData["app"] = info.App
 	postData["stream"] = info.Stream
 	postData["name"] = info.Name
 
